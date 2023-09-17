@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Users;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,6 +28,8 @@ class LoginController extends Controller
         ], $request -> input('remember'))) {
             return redirect()->route('admin');
         }
+
+        session()->flash('error', 'Email hoặc Password không đúng');
         return redirect() -> back();
     }
 }
